@@ -14,50 +14,5 @@
       "semanticBasis": "逐项综合职责、明确专业要求、服务行业和客观工作要求判断；不会因为岗位标题含 AI、数据、信号或工程而自动纳入或排除。"
     }
   ],
-  "overrides": [
-    {
-      "officialUrl": "https://job.chinatelecom.com.cn/wt/TELE/web/index/webPosition210!getOnePosition?postIdEnc=35f940756ba9db2f&recruitType=1&positionType=0%2F1227%2F132803&columnId=1&brandCode=1&importPost=0",
-      "decision": "accepted",
-      "reasonCode": "broad-eligibility-needs-confirmation",
-      "reason": "官网职责为信息化咨询规划和项目沟通，未列出排他的专业或技术资格；可保留为交叉工科备选，但专业资格须投递前确认。",
-      "semanticBasis": "结论来自岗位实际以咨询规划、沟通协调为核心且官方未限定专业；不是把“信息化”一词等同于生物医学工程。",
-      "matchLevel": "需要确认",
-      "priority": 65,
-      "matchReason": "官方未限定专业，职责为信息化咨询规划；与生物医学工程的具体资格关系需确认。",
-      "tags": ["信息化咨询", "专业未单列", "专业待确认"]
-    },
-    {
-      "officialUrl": "https://job.chinatelecom.com.cn/wt/TELE/web/index/webPosition210!getOnePosition?postIdEnc=fc8d07cb898e6e6d&recruitType=1&positionType=0%2F1227%2F132806&columnId=1&brandCode=1&importPost=0",
-      "decision": "accepted",
-      "reasonCode": "open-major-product-role-needs-confirmation",
-      "reason": "官网明确其他专业、只要接触产品管理也可考虑；职责是需求研究、产品功能设计和项目协同，故作为跨学科产品方向备选保留。",
-      "semanticBasis": "判断依据是官网的开放专业表述与产品管理职责的组合，而非仅因它属于 AI 或软件产品。",
-      "matchLevel": "需要确认",
-      "priority": 68,
-      "matchReason": "官网允许其他专业申请产品管理岗位；生物医学工程背景的项目经验与匹配度需自行确认。",
-      "tags": ["产品管理", "跨学科", "专业待确认"]
-    },
-    {
-      "officialUrl": "https://job.chinatelecom.com.cn/wt/TELE/web/index/webPosition210!getOnePosition?postIdEnc=d654c8d55352f6ba&recruitType=1&positionType=0%2F1227%2F132817%2F132893%2F133223&columnId=1&brandCode=1&importPost=0",
-      "decision": "accepted",
-      "reasonCode": "open-major-solution-role-needs-confirmation",
-      "reason": "官网列出的任职条件只有通用协作与解决问题能力，职责为客户需求、方案编制和交付协同；没有排除理工科背景，故作为低优先级备选保留。",
-      "semanticBasis": "根据官网未限制专业且工作集中于解决方案/项目协同判断；不把它表述为生物医学工程的确认对口岗位。",
-      "matchLevel": "需要确认",
-      "priority": 62,
-      "matchReason": "官方未列专业限制，职责是方案与项目协同；是否接受生物医学工程须投递前确认。",
-      "tags": ["解决方案", "专业未单列", "专业待确认"]
-    },
-    {
-      "officialUrl": "https://job.chinatelecom.com.cn/wt/TELE/web/index/webPosition210!getOnePosition?postIdEnc=d24be4a056cb2c12&recruitType=1&positionType=0%2F1227%2F132802%2F132830%2F132974&columnId=1&brandCode=1&importPost=",
-      "decision": "accepted",
-      "reasonCode": "signal-analysis-cross-domain-needs-confirmation",
-      "reason": "岗位实际围绕声纹和振动时序信号的特征提取、异常检测与模型设计；其信号处理方法与生物医学工程的交叉能力有可解释的相邻性，但业务并非医疗场景，故仅作为需要确认的备选。",
-      "semanticBasis": "依据是官网所列声纹/振动时序信号、滤波、频谱分析、异常检测与模型研发职责；没有因“AI开发工程师”这一标题本身收录。",
-      "matchLevel": "需要确认",
-      "priority": 72,
-      "matchReason": "岗位涉及复杂时序信号处理与异常检测，和生物医学工程的信号分析能力存在交叉；专业资格和业务适配需确认。",
-      "tags": ["信号处理", "异常检测", "专业待确认"]
-    }
-  ]
+  "overrides": []
 }
