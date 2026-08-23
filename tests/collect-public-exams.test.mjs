@@ -211,6 +211,26 @@ test("uses Shenzhen's official announcement JSON rather than scraping a rendered
   assert.equal(result.notices[0].category, "selection-program");
 });
 
+test("collects Guangzhou-targeted Guangdong selection announcements from the selected-university public category", async () => {
+  const config = "https://career.buaa.edu.cn/frontpage/buaa/js/init.js";
+  const feed = "https://career.buaa.edu.cn/f/newsCenter/ajax_list";
+  const detail = "https://career.buaa.edu.cn/f/newsCenter/ajax_view?id=selection-2099";
+  const title = "广东省2099年度选调优秀大学毕业生公告";
+  const fetchImpl = mockFetch({
+    [config]: { body: "window._config = { token: 'public-token' };" },
+    [feed]: { body: json({ state: 1, object: { newsPage: { totalPage: 1, list: [{ id: "selection-2099", title, releaseDate: "2099-10-01", url: "/frontpage/buaa/html/newsDetail.html?id=selection-2099" }] } } }) },
+    [detail]: { body: json({ state: 1, object: { article: {
+      title,
+      releaseDate: "2099-10-01",
+      articleData: { content: "<p>中共广东省委组织部</p><p>面向应届优秀大学毕业生。</p><p>网上报名：2099年10月20日至11月5日。</p>" }
+    }, fileMap: [] } }) }
+  });
+  const result = await collectPublicExam({ sourceId: "guangzhou-selection-program", fetchImpl });
+  assert.equal(result.collectionRoute, "北航就业网选调生公开栏目 API → 城市应届选调公告详情/附件");
+  assert.equal(result.noticeCount, 1);
+  assert.equal(result.notices[0].category, "selection-program");
+});
+
 test("parses a Guangzhou-filtered official position workbook without asking a browser to open each job", () => {
   const sheets = parsePositionWorkbook(workbookBuffer(), { city: "广州市", fileName: "职位表.xlsx" });
   assert.equal(sheets.length, 1);
