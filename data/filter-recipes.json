@@ -109,46 +109,47 @@
       "status": "route-verified",
       "observedAt": "2026-08-23",
       "officialEntryUrl": "https://rsj.gz.gov.cn/ywzt/rszdgg/gwykl/",
-      "accessMode": "script-official-static-list",
-      "nativeFilters": [],
+      "collectionEntryUrl": "https://career.buaa.edu.cn/frontpage/buaa/html/newsList.html?id=5453aeeb99e74d78aea0b45fd456ae68",
+      "accessMode": "script-official-university-announcement-api",
+      "nativeFilters": ["北航就业信息网栏目：公务员／选调生", "标题：广东省 + 选调 + 应届优秀大学毕业生"],
       "queryPlan": {
         "everyRun": [
-          "脚本读取广州市人力资源和社会保障局公务员考录官方列表与可见分页，只保留选调、优培、定向选调和选调生相关公告。",
-          "进入每条同域官方详情，读取报名期限和职位表/附件；广东省统一选调公告会保留为广州可关注的公告级对象。",
+          "页面的信息源卡片保留广州市人社局原生入口；脚本读取北航就业网“公务员／选调生”公开栏目全部分页，不扫描未筛选的全站招聘列表。",
+          "仅打开标题命中广东省应届选调的详情，并确认正文标明中共广东省委组织部为发布机关；职位表再按广州市筛选。",
           "可解析职位表时才进行地点与资格的后续结构化筛选；预公告不发布具体岗位。"
         ],
-        "completionRule": "官方列表、相关公告详情与公开附件均有访问证据；无当期公告时记录空结果而非停止后续来源。"
+        "completionRule": "选调高校公开栏目全部分页、广东省标题命中详情与公开附件均有访问证据；无当期公告时记录空结果而非停止后续来源。"
       },
-      "availabilityRule": "官方列表可访问但详情、分页或附件不能稳定完成时只能记 accessible-incomplete，不得按无岗位处理。",
+      "availabilityRule": "原生政府入口供用户直接访问；后台采集以选调高校公开栏目、详情发布机关和后续广州市职位表筛选为准。栏目、详情或附件未完整返回时只能记 accessible-incomplete。",
       "collection": {
         "primary": "script",
-        "mode": "official-static-selection-announcement-collector",
+        "mode": "official-university-selection-announcement-collector",
         "steps": [
           "运行 node scripts/collect-public-exams.mjs --source guangzhou-selection-program --parse-position-tables。",
-          "采集器按官方列表进入详情，保留公告、报名期限、附件和解析错误。",
+          "采集器按北航就业网公开栏目完成分页，筛出广东省应届选调标题后进入详情，保留公告、报名期限、附件和解析错误。",
           "仅把明确有效或预公告写入匿名审核记录，具体职位继续经过私有资格核验。"
         ],
-        "completion": "官方公告列表、详情和公开附件路径均被采集；本轮未有有效项目时仍产生来源检查记录。",
-        "fallback": "公告列表改版或附件异常时记录 accessible-incomplete，用浏览器校准公开结构，不能抓取未经筛选的大型职位全集。",
+        "completion": "选调高校栏目、广东省匹配详情和公开附件路径均被采集；本轮未有有效项目时仍产生来源检查记录。",
+        "fallback": "栏目接口、分页或附件异常时记录 accessible-incomplete，用浏览器校准公开结构，不能抓取未经筛选的大型职位全集。",
         "implementation": {
           "command": "node scripts/collect-public-exams.mjs --source guangzhou-selection-program --parse-position-tables",
           "smokeTest": "node scripts/collect-public-exams.mjs --source guangzhou-selection-program --max-notices 8 --summary",
-          "runtime": "Node.js 18+；npm ci --ignore-scripts 后运行；只访问 rsj.gz.gov.cn 的公开页面与附件。",
-          "hardGuard": "广东省统一公告不能仅凭“广东”标题自动判定为广州具体岗位；须等官方职位表或私有资格判断。"
+          "runtime": "Node.js 18+；npm ci --ignore-scripts 后运行；只访问 career.buaa.edu.cn 的公开栏目、详情和附件。",
+          "hardGuard": "详情必须确认中共广东省委组织部且明确面向应届毕业生；广东省统一公告不能仅凭标题自动判定为广州具体岗位，须等官方职位表筛选和私有资格判断。"
         }
       },
       "availability": {
         "state": "available",
-        "summary": "广州市人社局公务员考录栏目可打开，栏目内存在广东省选调公告的官方记录。",
+        "summary": "原生广州市人社入口保留给用户；北航就业网“选调生”公开栏目可匿名分页访问，详情逐条确认发布机关。",
         "evidence": [
           {
-            "method": "official-public-page-check",
-            "target": "https://rsj.gz.gov.cn/ywzt/rszdgg/gwykl/",
-            "outcome": "non-error official page",
-            "checkedAt": "2026-08-23T10:20:00+08:00"
+            "method": "official-university-public-api-check",
+            "target": "https://career.buaa.edu.cn/f/newsCenter/ajax_list",
+            "outcome": "公开“选调生”栏目接口返回分页，无需登录",
+            "checkedAt": "2026-08-23T17:30:00+08:00"
           }
         ],
-        "nextAction": "每轮优先读取最新页与官方详情；出现职位表后再按广州市字段筛选。"
+        "nextAction": "每轮完成栏目分页后，按广东省标题筛选并在详情确认发布机关；出现职位表后再按广州市字段筛选。"
       }
     },
     {
