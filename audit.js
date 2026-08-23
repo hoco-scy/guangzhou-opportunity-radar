@@ -28,6 +28,7 @@ const scopeLabels = { announcement: "整份公告", position: "具体岗位", "o
 const sourceLabels = {
   "national-civil": "国家公务员局",
   "guangzhou-civil": "广州市公务员招考",
+  "guangzhou-selection-program": "广州选调／优培公告",
   "guangzhou-personnel-exam": "广州市人事考试平台",
   "guangzhou-institutions": "广州市事业单位招聘",
   "central-institutions": "中央和国家机关事业单位招聘",

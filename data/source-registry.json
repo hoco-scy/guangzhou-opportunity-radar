@@ -66,6 +66,26 @@
       "officialSiteConfirmed": true
     },
     {
+      "id": "guangzhou-selection-program",
+      "organization": "广州市人力资源和社会保障局选调优培公告",
+      "type": "政府官网",
+      "role": "authoritative",
+      "tier": "critical",
+      "cadence": "every-run",
+      "coverage": [
+        "选调优培"
+      ],
+      "domains": [
+        "rsj.gz.gov.cn"
+      ],
+      "entryUrl": "https://rsj.gz.gov.cn/ywzt/rszdgg/gwykl/",
+      "accessMode": "script-official-static-list",
+      "recipeRequired": true,
+      "registeredAt": "2026-08-23T15:39:00+08:00",
+      "lastAccessAuditAt": "2026-08-23",
+      "officialSiteConfirmed": true
+    },
+    {
       "id": "guangzhou-institutions",
       "organization": "广州市人力资源和社会保障局事业单位公开招聘",
       "type": "政府官网",
